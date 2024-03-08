@@ -1,26 +1,26 @@
 # Accounts/backends.py
 
 from django.contrib.auth.backends import ModelBackend
-from .models import UserRecruitment_Announcer
+from .models import*
 
-# class UserFarmerBackend(ModelBackend):
-#     def authenticate(self, request, username=None, password=None, **kwargs):
-#         try:
-#             user = UserStudent.objects.get(username=username)
-#         except UserStudent.DoesNotExist:
-#             return None
+class UserStudentBackend(ModelBackend):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        try:
+            user = UserStudent.objects.get(username=username)
+        except UserStudent.DoesNotExist:
+            return None
 
-#         if user.check_password(password):
-#             user.backend = 'Accounts.backends.UserStudentBackend'  # Set the backend attribute
-#             return user
+        if user.check_password(password):
+            user.backend = 'RegisterAccounts.backends.UserStudentBackend'  # Set the backend attribute
+            return user
 
-#     def get_user(self, user_id):
-#         try:
-#             return UserStudent.objects.get(pk=user_id)
-#         except UserStudent.DoesNotExist:
-#             return None
+    def get_user(self, user_id):
+        try:
+            return UserStudent.objects.get(pk=user_id)
+        except UserStudent.DoesNotExist:
+            return None
 
-class UserDriverBackend(ModelBackend):
+class UserRecruitment_AnnouncerBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:
             user = UserRecruitment_Announcer.objects.get(username=username)
@@ -28,7 +28,7 @@ class UserDriverBackend(ModelBackend):
             return None
 
         if user.check_password(password):
-            user.backend = 'Accounts.backends.UserRecruitment_AnnouncerBackend'  # Set the backend attribute
+            user.backend = 'RegisterAccounts.backends.UserRecruitment_AnnouncerBackend'  # Set the backend attribute
             return user
 
     def get_user(self, user_id):

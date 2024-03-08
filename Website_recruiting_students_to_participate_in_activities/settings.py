@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'RegisterAccounts',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'Accounts.backends.UserFarmerBackend',
-    'Accounts.backends.UserDriverBackend',
+    'RegisterAccounts.backends.UserRecruitment_AnnouncerBackend',
+    'RegisterAccounts.backends.UserStudentBackend',
 ]
